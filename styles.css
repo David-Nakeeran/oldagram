@@ -2,8 +2,6 @@ body {
     font-family: 'Source Code Pro', monospace;
 }
 
-
-
 .bold-para,
 .small-para {
     color: #000000;
@@ -22,7 +20,8 @@ body {
     margin-top: 0;
 }
 
-.container {
+.container,
+.top-section {
     width: 375px;
     margin: 0 auto;
     margin-bottom: 25px;
@@ -30,7 +29,8 @@ body {
 
 .sub-container {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: start;
 }
 
 .top-section {
@@ -56,6 +56,7 @@ body {
 
 .main-img {
     width: 375px;
+    
 }
 
 .img-icons {
@@ -68,4 +69,16 @@ body {
     justify-content: start;
     align-items: center;
     margin-bottom: 10px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
 }
