@@ -1,6 +1,12 @@
 body {
-    font-family: 'Source Code Pro', monospace;
+    font-family: 'Source Sans 3', sans-serif;
+    background-color: #C6C6C6;
+    
 }
+
+* {
+    box-sizing: border-box;
+ }
 
 .bold-para,
 .small-para {
@@ -12,6 +18,7 @@ body {
     font-weight: 700;
     font-size: 13px;
     margin-bottom: 0;
+    margin-top: 0;
 }
 
 .small-para {
@@ -20,17 +27,23 @@ body {
     margin-top: 0;
 }
 
-.container,
-.top-section {
+.width {
     width: 375px;
     margin: 0 auto;
-    margin-bottom: 25px;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    
 }
 
 .sub-container {
     display: flex;
     flex-direction: column;
     align-items: start;
+    padding-top: 10px;
+    background-color: #ffffff;
+    margin-bottom: 20px;
 }
 
 .top-section {
@@ -39,7 +52,8 @@ body {
     align-items: center;
     border-bottom: 1px solid #C6C6C6;
     padding: 12px 10px 10px 10px;
-    margin-bottom: 12px;
+    background-color: #ffffff;
+    
 }
 
 .logo {
@@ -62,23 +76,30 @@ body {
 .img-icons {
     width: 23.3px;
     margin: 12px 7px;
+    
+
 }
 
 .icons {
     display: flex;
     justify-content: start;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 0;
 }
 
 .row {
     display: flex;
     flex-direction: row-reverse;
-    align-items: center;
+    align-items: flex-start;
     
 }
 
 .column {
     display: flex;
     flex-direction: column;
+}
+
+.bottom-container {
+    margin-top: 10px;
+    margin-bottom: 15px;
 }

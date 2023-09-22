@@ -30,65 +30,96 @@ const posts = [
     }
 ];
 
-// 1) create element
+const iconsArr = [
+['images/icon-heart.png', 'heart-icon'],
+['images/icon-comment.png', 'comment-icon'],
+['images/icon-dm.png', 'dm-icon'],
+];
 
-// 2) textContent element
-
-// 3) append element 
-
-// 4) add class to element
-
-const subContainer = document.querySelector('.sub-container');
-
-
+const container = document.querySelector('.container');
+let subContainer;
 
 
 for(let i = 0; i < posts.length; i++) {
-    const row = document.createElement('div');
-    row.className = 'row';
-    subContainer.append(row);
+    renderPosts(posts, [i])
+};
+
+// Renders oldagram posts
+function renderPosts([index], [i]) {
+    renderSubContainer();
+
+    const row = createContainerDiv('row', subContainer);
+
+    const column = createContainerDiv('column', row);
     
-    const column = document.createElement('div');
-    column.className = 'column';
-    row.append(column);
+    const img = createImgElement('small-img', row, posts, [i], ['avatar']);
 
-    const img = document.createElement('img');
-    img.className = 'small-img';
-    img.src = posts[i].avatar;
-    img.alt = posts[i].name;
-    row.append(img);
+    const boldPara = createTextElement('p','bold-para', posts, [i], ['name'], column);
 
-    let boldPara = document.createElement('p');
-    boldPara.className = 'bold-para';
-    const smallPara = document.createElement('p');
-    smallPara.className = 'small-para';
-    boldPara.textContent = posts[i].name;
-    smallPara.textContent = posts[i].location;
-    column.append(boldPara);
-    column.append(smallPara);
+    const smallPara = createTextElement('p','small-para', posts, [i], ['location'], column );
 
-    const mainImg = document.createElement('img');
-    mainImg.className = 'main-img';
-    mainImg.src = posts[i].post;
-    mainImg.alt = posts[i].name;
-    subContainer.append(mainImg);
+    const mainImg = createImgElement('main-img', subContainer, posts, [i], ['post']);
 
-    // const icons = document.createElement('img');
-    // icons.className = 'img-icons';
-    // icons.src = 'images/icon-heart.png';
-    // icons.alt = 'heart-icon';
-    // subContainer.append(icons)
+    renderIconImgs();
+    
+    const likes = document.createElement('p');
+    likes.className = 'bold-para';
+    likes.textContent = `${posts[i].likes} likes`;
+    subContainer.append(likes)
+
+    const bottomContainer = createContainerDiv('bottom-container', subContainer);
+
+    const userName = createTextElement('p','bold-para', posts, [i], ['username'], bottomContainer );
+    
+    const comments = createTextElement('span', 'small-para', posts, [i], ['comment'], userName);
+};
+
+// Renders a sub container and appends to container
+function renderSubContainer() {
+    subContainer = document.createElement('div');
+    subContainer.className = 'sub-container';
+    container.append(subContainer);
+};
+
+// Renders Div container
+function createContainerDiv(elementclass, parent) {
+    const element = document.createElement('div');
+    element.className = elementclass;
+    parent.append(element);
+    return element;
+};
+
+// Renders Text Elements
+function createTextElement(tagname, elementclass, arr, index, key, parent) {
+    const element = document.createElement(tagname);
+    element.className = elementclass;
+    element.textContent = arr[index][key];
+    parent.append(element);
+    return element;
+};
+
+// Renders Post Images
+function createImgElement(elementclass, parent, arr,index, key) {
+    const element = document.createElement('img');
+    element.className = elementclass;
+    element.src = arr[index][key];
+    element.alt = arr[index].name;
+    parent.append(element);
+    return element;
+};
 
 
-
-}
-
-const iconImgs = ['images/icon-heart.png', 'images/icon-heart.png', 'images/icon-heart.png']
-
+// Loops through iconsArr and appends to container
 function renderIconImgs() {
-    const icons = document.createElement('img');
-    icons.className = 'img-icons';
-    icons.src = 'images/icon-heart.png';
-    icons.alt = 'heart-icon';
-    subContainer.append(icons)
-}
+        const iconsContainer = document.createElement('div');
+        iconsContainer.className = 'icons';
+        subContainer.append(iconsContainer)
+
+        for(let i = 0; i < iconsArr.length; i++) {
+            const icons = document.createElement('img');
+            icons.className = 'img-icons';
+            icons.src = iconsArr[i][0];
+            icons.alt = iconsArr[i][1];
+            iconsContainer.append(icons)
+     };
+};
